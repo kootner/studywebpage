@@ -1,5 +1,6 @@
 package com.sparta.studywebpage.model;
 
+import com.sparta.studywebpage.dto.UserRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +9,6 @@ import javax.persistence.*;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
-@NoArgsConstructor // 기본 생성자를 만들어줍니다.
 @Entity // DB 테이블 역할을 합니다.
 @Table(name="User_info")
 public class User {
@@ -26,4 +26,11 @@ public class User {
 
     @Column(nullable = false)
     private String nickname;
+
+    public User(UserRequestDto userRequestDto){
+        this.email = userRequestDto.getEmail();
+        this.password = userRequestDto.getPassword();
+        this.nickname = userRequestDto.getNickname();
+    }
+
 }

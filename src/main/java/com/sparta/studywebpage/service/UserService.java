@@ -5,11 +5,14 @@ import com.sparta.studywebpage.exception.CustomException;
 import com.sparta.studywebpage.exception.ErrorCode;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.UserRepository;
+import com.sparta.studywebpage.validator.UserServiceValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -17,17 +20,13 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserServiceValidator userServiceValidator;
+
     @Transactional
-    public User registerUser(@RequestBody UserRequestDto requestDto){
+    public User registerUser( UserRequestDto requestDto){
 
-        String email = requestDto.getEmail();
-        String nickname = requestDto.getNickname();
-        String password = requestDto.getPassword();;
-        String password_confirm = requestDto.getPassword_confirm();
-
-        if(userRepository.existsByEmail(email)){
-            throw new CustomException(ErrorCode.EXIST_EMAIL);
-        }
-
+        userServiceValidator.signupValidation(requestDto);
+        User user = new User(requestDto);
+        return userRepository.save(user);
     }
 }
