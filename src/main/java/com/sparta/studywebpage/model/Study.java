@@ -31,4 +31,10 @@ public class Study {
        this.content = studyRequestDto.getStudyContent();
        this.address = studyRequestDto.getStudyAddress();
     }
+
+    public void update(StudyRequestDto studyRequestDto) {
+        this.title = studyRequestDto.getStudyTitle();
+        this.content = studyRequestDto.getStudyContent();
+        this.address = studyRequestDto.getStudyAddress();
+    }
 }

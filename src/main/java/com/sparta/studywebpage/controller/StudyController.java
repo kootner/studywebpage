@@ -24,7 +24,7 @@ public class StudyController {
     }
 
     @PutMapping("/api/putstudy/{studyId}")
-    public void updateStudy(@PathVariable Long studyId) {
-        studyService.updateStudy(studyId);
+    public void updateStudy(@PathVariable Long studyId,@RequestBody StudyRequestDto studyRequestDto) {
+        studyService.updateStudy(studyId,studyRequestDto);
     }
 }

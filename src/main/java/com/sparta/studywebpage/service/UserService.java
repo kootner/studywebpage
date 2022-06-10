@@ -1,8 +1,10 @@
 package com.sparta.studywebpage.service;
 
 
+import com.sparta.studywebpage.dto.UserRequestDto;
 import com.sparta.studywebpage.model.User;
 
+import com.sparta.studywebpage.repository.UserRepository;
 import com.sparta.studywebpage.validator.UserServiceValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
