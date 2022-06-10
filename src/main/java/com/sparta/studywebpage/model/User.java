@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true) //유니크 -> 중복허용
-    private String email;
+    private String username;
 
     @Column(nullable = false)
     private String password;
@@ -28,7 +28,7 @@ public class User {
     private String nickname;
 
     public User(UserRequestDto userRequestDto){
-        this.email = userRequestDto.getEmail();
+        this.username = userRequestDto.getUsername();
         this.password = userRequestDto.getPassword();
         this.nickname = userRequestDto.getNickname();
     }

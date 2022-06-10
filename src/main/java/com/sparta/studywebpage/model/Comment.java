@@ -1,6 +1,6 @@
 package com.sparta.studywebpage.model;
 
-import com.sparta.studywebpage.dto.CommentsRequestDto;
+import com.sparta.studywebpage.dto.CommentRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Comments {
+public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
@@ -27,7 +27,7 @@ public class Comments {
     @Column(nullable = false)
     private String comment;
 
-    public Comments (CommentsRequestDto commentsRequestDto){
+    public Comment(CommentRequestDto commentsRequestDto){
         this.comment = commentsRequestDto.getComment();
     }
 
