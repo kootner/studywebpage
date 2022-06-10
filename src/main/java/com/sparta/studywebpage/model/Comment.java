@@ -11,16 +11,16 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Comment {
+public class Comment extends Timestamped{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="User_Id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="Study_Id")
     private Study study;
 

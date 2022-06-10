@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +32,9 @@ public class Study {
 
     @Column(nullable = false)
     private String category;
+
+    @OneToMany(mappedBy = "study", cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 
 
 
