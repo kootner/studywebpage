@@ -29,6 +29,9 @@ public class Study {
     @JoinColumn(name="User_Id")
     private User user;
 
+    @Column(nullable = false)
+    private String category;
+
 
 
     public Study(StudyRequestDto studyRequestDto) {
@@ -36,6 +39,7 @@ public class Study {
        this.content = studyRequestDto.getStudyContent();
        this.address = studyRequestDto.getStudyAddress();
         this.user = studyRequestDto.getUser();
+        this.category = studyRequestDto.getCategory();
     }
 
     public void update(StudyRequestDto studyRequestDto) {
