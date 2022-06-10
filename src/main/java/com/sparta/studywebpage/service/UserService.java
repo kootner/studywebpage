@@ -1,6 +1,8 @@
 package com.sparta.studywebpage.service;
 
 import com.sparta.studywebpage.dto.UserRequestDto;
+import com.sparta.studywebpage.exception.CustomException;
+import com.sparta.studywebpage.exception.ErrorCode;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +26,7 @@ public class UserService {
         String password_confirm = requestDto.getPassword_confirm();
 
         if(userRepository.existsByEmail(email)){
-            throw new
+            throw new CustomException(ErrorCode.EXIST_EMAIL);
         }
 
     }

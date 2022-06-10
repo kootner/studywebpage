@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     // 400 Bad Request
     TEMPORARY_SERVER_ERROR(HttpStatus.BAD_REQUEST, "400_0", "잘못된 요청입니다."),
+    EXIST_EMAIL(HttpStatus.BAD_REQUEST, "400_1", "이미 존재하는 이메일입니다."),
 
 
     // 404 Not Found
