@@ -21,7 +21,7 @@ public class UserController {
     @
 
     @PostMapping("/signip")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody UserRequestDto requestDto) {
+    public ResponseEntity<String> registerUser(@RequestBody UserRequestDto requestDto) {
         userService.registerUser(requestDto);
         log.info("회원가입 완료");
         return ResponseEntity.ok()
