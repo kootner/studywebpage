@@ -25,10 +25,16 @@ public class Study {
     @Column(nullable = false)
     private String address;
 
+    @ManyToOne
+    @JoinColumn(name="User_Id")
+    private User user;
+
+
 
     public Study(StudyRequestDto studyRequestDto) {
        this.title = studyRequestDto.getStudyTitle();
        this.content = studyRequestDto.getStudyContent();
        this.address = studyRequestDto.getStudyAddress();
+        this.user = studyRequestDto.getUser();
     }
 }
