@@ -6,6 +6,7 @@ import com.sparta.studywebpage.exception.ErrorCode;
 import com.sparta.studywebpage.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +17,7 @@ public class UserServiceValidator {
     private final UserRepository userRepository;
 
     public void signupValidation(UserRequestDto requestDto){
-        String email = requestDto.getEmail();
+        String email = requestDto.getUsername();
         String nickname = requestDto.getNickname();
         String password = requestDto.getPassword();;
         String password_confirm = requestDto.getPassword_confirm();
@@ -26,7 +27,7 @@ public class UserServiceValidator {
         Matcher matcher = pattern.matcher(email);
 
 
-        if(userRepository.existsByEmail(email)){
+        if(userRepository.existsByUsername(email)){
             throw new CustomException(ErrorCode.EXIST_EMAIL);
         }
         if(userRepository.existsByNickname(nickname)){
@@ -36,7 +37,7 @@ public class UserServiceValidator {
         }
         if(!requestDto.getPassword().matches("^[a-z0-9-_]{4,12}$")){
             throw new CustomException(ErrorCode.WRONG_FORMAT_PASSWORD);
-        }if(password!=password_confirm){
+        }if(!Objects.equals(password, password_confirm)){
             throw new CustomException(ErrorCode.PASSWORD_NOT_CONFIRM);
         }
 

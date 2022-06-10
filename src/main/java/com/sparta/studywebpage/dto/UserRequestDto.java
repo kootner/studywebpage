@@ -6,12 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRequestDto {
-    String email;
+    String username;
 
     String nickname;
 
     String password;
 
     String password_confirm;
-
 }

@@ -22,7 +22,7 @@ public enum ErrorCode {
     PASSWORD_NOT_CONFIRM(HttpStatus.BAD_REQUEST, "400", "비밀번호와 비밀번호 확인이 다릅니다."),
 
     // 404 Not Found
-    NOT_FOUND_RESTAURANT(HttpStatus.NOT_FOUND, "404_1", "해당 음식점 아이디가 존재하지 않습니다."),
+    NOT_FOUND_COMMENT(HttpStatus.NOT_FOUND, "404_1", "해당 댓글이 존재하지 않습니다."),
     NOT_FOUND_FOOD(HttpStatus.NOT_FOUND, "404_2", "해당 음식 아이디가 존재하지 않습니다."),
     ;
 
