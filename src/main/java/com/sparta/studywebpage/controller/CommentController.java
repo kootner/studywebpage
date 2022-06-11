@@ -21,9 +21,8 @@ public class CommentController {
 
 
     @PostMapping("/postcomment/{studyId}")
-    public ResponseEntity<String> createComment(@PathVariable Long studyId,
-                                                @RequestBody CommentRequestDto commentsRequestDto,
-                                                @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<String> createComment(@PathVariable Long studyId,@RequestBody CommentRequestDto commentsRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+
         User user = userDetails.getUser();
         commentService.createComment(studyId,commentsRequestDto,user);
 

@@ -1,10 +1,12 @@
 package com.sparta.studywebpage.controller;
 
 
+import com.sparta.studywebpage.dto.ResponseDto;
 import com.sparta.studywebpage.dto.UserRequestDto;
 import com.sparta.studywebpage.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +26,7 @@ public class UserController {
         log.info("회원가입 완료");
         return ResponseEntity.ok()
                 .body("회원가입 완료");
+
     }
 
 }
