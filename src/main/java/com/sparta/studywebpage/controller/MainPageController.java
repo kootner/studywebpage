@@ -26,6 +26,9 @@ public class MainPageController {
                                    ){
         String category = categoryDto.getCategory();
         page = page - 1;
+        if(category==null){
+            return mainPageService.getAllMainPageByCategory(page,size,sortBy,isAsc);
+        }
         return mainPageService.getMainPageByCategory(page,size,sortBy,isAsc,category);
     }
 

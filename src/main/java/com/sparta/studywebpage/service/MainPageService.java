@@ -17,12 +17,22 @@ public class MainPageService {
     private final StudyRepository studyRepository;
 
 
+
+    public Page<Study> getAllMainPageByCategory(int page, int size, String sortBy, boolean isAsc){
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return studyRepository.getAllStudies(pageable);
+    }
+
+
     public Page<Study> getMainPageByCategory(int page, int size, String sortBy, boolean isAsc, String category) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        return studyRepository.findUserAndTitleByCategory(category,pageable);
+        return studyRepository.getStudies(category,pageable);
 
     }
 }
