@@ -17,10 +17,10 @@ public class StudyController {
         studyService.createStudy(studyRequestDto);
     }
 
-    @GetMapping("/api/getstudy/{studyId}")
-    public Study readStudy(@PathVariable Long studyId){
-        return studyService.readStudy(studyId);
-    }
+//    @GetMapping("/api/getstudy/{studyId}")
+//    public Study readStudy(@PathVariable Long studyId){
+//        return studyService.readStudy(studyId);
+//    }
 
     @PutMapping("/api/putstudy/{studyId}")
     public void updateStudy(@PathVariable Long studyId,@RequestBody StudyRequestDto studyRequestDto) {
