@@ -15,7 +15,6 @@ public class StudyController {
     @PostMapping("/api/poststudy")
     public void createStudy(@RequestBody StudyRequestDto studyRequestDto){
         studyService.createStudy(studyRequestDto);
-
     }
 
     @GetMapping("/api/getstudy/{studyId}")
