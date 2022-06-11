@@ -29,8 +29,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("항해99 스프링 심화 과제")
-                .description("Swagger config 연습")
+                .title("항해99 주특기 미니프로젝트")
+                .description("미니프로젝트")
                 .version("1.0")
                 .build();
     }
