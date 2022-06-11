@@ -19,10 +19,6 @@ import javax.transaction.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/JungHoon
     private final PasswordEncoder passwordEncoder;
     private final UserServiceValidator userServiceValidator;
 
