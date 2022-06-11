@@ -21,7 +21,9 @@ public class CommentController {
 
 
     @PostMapping("/postcomment/{studyId}")
-    public ResponseEntity<String> createComment(@PathVariable Long studyId, CommentRequestDto commentsRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<String> createComment(@PathVariable Long studyId,
+                                                @RequestBody CommentRequestDto commentsRequestDto,
+                                                @AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
         commentService.createComment(studyId,commentsRequestDto,user);
 
@@ -30,17 +32,20 @@ public class CommentController {
     }
 
     @PutMapping("/putcomment/{commentId}")
-    public ResponseEntity<String> updateComment(@PathVariable Long commentId,CommentRequestDto commentsRequestDto,@AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<String> updateComment(@PathVariable Long commentId,
+                                                @RequestBody CommentRequestDto commentsRequestDto,
+                                                @AuthenticationPrincipal UserDetailsImpl userDetails){
 
         User user = userDetails.getUser();
         commentService.updateComment(commentId,commentsRequestDto,user);
 
         return ResponseEntity.ok()
-                .body("댓글 수정 완료");
+                .body("댓글 삭제 완료");
     }
 
     @DeleteMapping("/deletecomment/{commentId}")
-    public ResponseEntity<String> deleteComment(@PathVariable Long commentId,@AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<String> deleteComment(@PathVariable Long commentId,
+                                                @AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
 
         commentService.deleteComment(commentId,user);

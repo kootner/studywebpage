@@ -32,6 +32,7 @@ public class User {
         this.username = userRequestDto.getUsername();
         this.password = userRequestDto.getPassword();
         this.nickname = userRequestDto.getNickname();
+
     }
 
 }
