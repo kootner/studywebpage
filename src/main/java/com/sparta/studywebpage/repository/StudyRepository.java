@@ -16,10 +16,10 @@ public interface StudyRepository extends JpaRepository<Study, Long> {
 
     Optional<Study> findById(Long id);
 
-    @Query("select this.user.nickname,this.title  from Study this")
-    Page<MainPageSearchDto> getAllStudies(Pageable pageable);
+    @Query("select this.id, this.user.nickname,this.title,this.category  from Study this")
+    List<MainPageSearchDto> getAllStudies();
 
-    @Query("select this.user.nickname,this.title   from Study this where this.category =: category")
-    Page<MainPageSearchDto> getStudies(@Param("category") String category, Pageable pageable);
+    @Query("select this.id, this.user.nickname,this.title,this.category   from Study this where this.category =: category")
+    List<MainPageSearchDto> getStudies(@Param("category") String category);
 
 }

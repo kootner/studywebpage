@@ -8,10 +8,9 @@ import com.sparta.studywebpage.service.MainPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -20,18 +19,14 @@ public class MainPageController {
     private final MainPageService mainPageService;
 
     @GetMapping("/")
-    public Page<MainPageSearchDto> getMainPage(@RequestParam("page") int page,
-                                               @RequestParam("size") int size,
-                                               @RequestParam("sortBy") String sortBy,
-                                               @RequestParam("isAsc") boolean isAsc,
-                                               @RequestBody CategoryDto categoryDto
-                                   ){
+    public List<MainPageSearchDto> getMainPage(){
+        return mainPageService.getAllMainPageByCategory();
+
+    }
+    @PostMapping("/")
+    public List<MainPageSearchDto> getMainPage(@RequestBody CategoryDto categoryDto){
         String category = categoryDto.getCategory();
-        page = page - 1;
-        if(category==null){
-            return mainPageService.getAllMainPageByCategory(page,size,sortBy,isAsc);
-        }
-        return mainPageService.getMainPageByCategory(page,size,sortBy,isAsc,category);
+        return mainPageService.getMainPageByCategory(category);
     }
 
 }

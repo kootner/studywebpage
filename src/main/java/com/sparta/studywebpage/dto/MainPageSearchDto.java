@@ -9,4 +9,8 @@ public class MainPageSearchDto {
     String nickname;
 
     String title;
+
+    String category;
+
+    String id;
 }
