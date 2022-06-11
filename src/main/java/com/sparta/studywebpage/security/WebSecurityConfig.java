@@ -49,7 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/JungHoon
     @Override
     public void configure(AuthenticationManagerBuilder auth) {
         auth
@@ -151,7 +154,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/user/signup");
 
         skipPathList.add("GET,/");
+<<<<<<< HEAD
 //        skipPathList.add("");
+=======
+>>>>>>> origin/JungHoon
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPathList,

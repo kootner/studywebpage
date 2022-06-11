@@ -19,6 +19,10 @@ import javax.transaction.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/JungHoon
     private final PasswordEncoder passwordEncoder;
     private final UserServiceValidator userServiceValidator;
 
@@ -30,4 +34,6 @@ public class UserService {
         User user = new User(requestDto);
         userRepository.save(user);
     }
+
+
 }
