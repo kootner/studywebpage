@@ -16,8 +16,8 @@ import javax.transaction.Transactional;
 @Service
 @RequiredArgsConstructor
 public class CommentService {
-    private CommentRepository commentRepository;
-    private StudyRepository studyRepository;
+    private final CommentRepository commentRepository;
+    private final StudyRepository studyRepository;
 
 
     @Transactional

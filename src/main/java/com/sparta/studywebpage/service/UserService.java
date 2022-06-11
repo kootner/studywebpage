@@ -22,10 +22,10 @@ public class UserService {
     private final UserServiceValidator userServiceValidator;
 
     @Transactional
-    public User registerUser( UserRequestDto requestDto){
+    public void registerUser(UserRequestDto requestDto){
 
         userServiceValidator.signupValidation(requestDto);
         User user = new User(requestDto);
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 }
