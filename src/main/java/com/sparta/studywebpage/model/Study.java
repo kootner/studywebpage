@@ -42,8 +42,8 @@ public class Study {
        this.title = studyRequestDto.getStudyTitle();
        this.content = studyRequestDto.getStudyContent();
        this.address = studyRequestDto.getStudyAddress();
-        this.user = studyRequestDto.getUser();
-        this.category = studyRequestDto.getCategory();
+       this.user = studyRequestDto.getUser();
+       this.category = studyRequestDto.getCategory();
     }
 
     public void update(StudyRequestDto studyRequestDto) {
