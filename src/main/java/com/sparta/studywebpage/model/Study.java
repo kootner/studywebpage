@@ -26,7 +26,7 @@ public class Study {
     @Column(nullable = false)
     private String address;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="User_Id")
     private User user;
 
