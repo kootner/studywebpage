@@ -4,6 +4,8 @@ package com.sparta.studywebpage.security.filter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.studywebpage.exception.CustomException;
+import com.sparta.studywebpage.exception.ErrorCode;
 import com.sparta.studywebpage.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,7 +45,7 @@ public class FormLoginFilter extends UsernamePasswordAuthenticationFilter {
 //                throw new IllegalArgumentException("존재하지 않는 아이디 입니다.");
 //            }
             if(!userRepository.existsByUsername(username)){
-                System.out.println("아이디가 존재 하지 않습니다. ");
+                throw new CustomException(ErrorCode.NOT_EXISTS_USERNAME);
                 
             }
 
