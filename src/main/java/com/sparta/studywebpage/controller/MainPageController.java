@@ -1,6 +1,7 @@
 package com.sparta.studywebpage.controller;
 
 import com.sparta.studywebpage.dto.CategoryDto;
+import com.sparta.studywebpage.dto.MainPageSearchDto;
 import com.sparta.studywebpage.model.Study;
 import com.sparta.studywebpage.security.UserDetailsImpl;
 import com.sparta.studywebpage.service.MainPageService;
@@ -12,17 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequiredArgsConstructor
 public class MainPageController {
     private final MainPageService mainPageService;
 
     @GetMapping("/")
-    public Page<Study> getMainPage(@RequestParam("page") int page,
-                                   @RequestParam("size") int size,
-                                   @RequestParam("sortBy") String sortBy,
-                                   @RequestParam("isAsc") boolean isAsc,
-                                   @RequestBody CategoryDto categoryDto
+    public Page<MainPageSearchDto> getMainPage(@RequestParam("page") int page,
+                                               @RequestParam("size") int size,
+                                               @RequestParam("sortBy") String sortBy,
+                                               @RequestParam("isAsc") boolean isAsc,
+                                               @RequestBody CategoryDto categoryDto
                                    ){
         String category = categoryDto.getCategory();
         page = page - 1;
