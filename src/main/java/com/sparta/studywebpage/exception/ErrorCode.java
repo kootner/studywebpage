@@ -21,6 +21,9 @@ public enum ErrorCode {
 
     PASSWORD_NOT_CONFIRM(HttpStatus.BAD_REQUEST, "400", "비밀번호와 비밀번호 확인이 다릅니다."),
 
+    NOT_EXISTS_USERNAME(HttpStatus.BAD_REQUEST, "400", "존재하지 않는 아이디입니다."),
+
+
 
     WRONG_USER(HttpStatus.BAD_REQUEST, "400", "올바른 유저가 아닙니다."),
 
