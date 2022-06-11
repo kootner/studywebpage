@@ -38,11 +38,11 @@ public class Study {
 
 
 
-    public Study(StudyRequestDto studyRequestDto) {
+    public Study(StudyRequestDto studyRequestDto, User user) {
        this.title = studyRequestDto.getStudyTitle();
        this.content = studyRequestDto.getStudyContent();
        this.address = studyRequestDto.getStudyAddress();
-        this.user = studyRequestDto.getUser();
+        this.user = user;
         this.category = studyRequestDto.getCategory();
     }
 
