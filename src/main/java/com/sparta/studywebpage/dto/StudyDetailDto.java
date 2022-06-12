@@ -16,6 +16,6 @@ public class StudyDetailDto {
     private String studyAddress;
     private String userNickname;
     private String username;
-    private List<Comment> commentList;
+    private List<CommentResponseDto> commentList;
 
 }

@@ -22,7 +22,7 @@ public class StudyDetailController {
     }
 
     @PutMapping("/putstudy/{studyid}")
-    public ResponseEntity<ResponseDto> updateStudyDetail(@PathVariable Long studyid,@RequestBody StudyDetailRequestDto requestDto) {
+    public ResponseEntity<ResponseDto> updateStudyDetail(@PathVariable Long studyid, @RequestBody StudyDetailRequestDto requestDto) {
         return studyDetailService.updateStudyDetail(studyid,requestDto);
     }
 

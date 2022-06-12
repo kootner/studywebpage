@@ -21,8 +21,7 @@ public class MainPageService {
 
 
     @Transactional
-    public  List<MainPageSearchDto> getAllMainPageByCategory(){
-
+    public List<MainPageSearchDto> getAllMainPageByCategory(){
         return studyRepository.getAllStudies();
     }
 

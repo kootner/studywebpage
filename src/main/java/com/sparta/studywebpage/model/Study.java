@@ -1,5 +1,7 @@
 package com.sparta.studywebpage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sparta.studywebpage.dto.StudyRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Study {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -26,8 +28,8 @@ public class Study {
     @Column(nullable = false)
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="User_Id")
+    @ManyToOne
+    @JoinColumn(name="user_id")
     private User user;
 
     @Column(nullable = false)

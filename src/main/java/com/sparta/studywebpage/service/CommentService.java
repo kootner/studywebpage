@@ -34,7 +34,7 @@ public class CommentService {
     @Transactional
     public void updateComment(Long commentId, CommentRequestDto commentRequestDto, User user) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(()->new CustomException(ErrorCode.NOT_FOUND_COMMENT));
-        if(user!= comment.getUser()){
+        if(!user.getId().equals(comment.getUser().getId())){
             throw new CustomException(ErrorCode.WRONG_USER);
         }
         comment.setComment(commentRequestDto.getComment());
@@ -44,7 +44,7 @@ public class CommentService {
     @Transactional
     public void deleteComment(Long commentId, User user) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(()->new CustomException(ErrorCode.NOT_FOUND_COMMENT));
-        if(user!= comment.getUser()){
+        if(!user.getId().equals(comment.getUser().getId())){
             throw new CustomException(ErrorCode.WRONG_USER);
         }
         commentRepository.delete(comment);

@@ -1,5 +1,6 @@
 package com.sparta.studywebpage.service;
 
+import com.sparta.studywebpage.dto.CommentResponseDto;
 import com.sparta.studywebpage.dto.ResponseDto;
 import com.sparta.studywebpage.dto.StudyDetailDto;
 import com.sparta.studywebpage.dto.StudyDetailRequestDto;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -26,12 +28,14 @@ public class StudyDetailService {
 
     private final StudyRepository studyRepository;
 
+    @Transactional
     public StudyDetailDto readStudyDetail(@PathVariable Long studyid) {
 
         StudyDetailDto studyDetailDto = new StudyDetailDto();
         Study study = studyRepository.findById(studyid).orElse(null);
+        assert study != null;
         User user = study.getUser();
-        List<Comment> commentList = study.getCommentList();
+        List<CommentResponseDto> commentList = study.getCommentList().stream().map(CommentResponseDto:: new).collect(Collectors.toList());
 
         studyDetailDto.setStudyTitle(study.getTitle());
         studyDetailDto.setStudyContent(study.getContent());
@@ -61,7 +65,6 @@ public class StudyDetailService {
         return new ResponseEntity<>(new ResponseDto(true, "수정 성공"), HttpStatus.OK);
 
     }
-
 
     public void deleteStudyDetail(@PathVariable Long studyid) {
         Study study = studyRepository.findById(studyid).orElseThrow(() ->

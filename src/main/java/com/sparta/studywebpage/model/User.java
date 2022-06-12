@@ -1,5 +1,6 @@
 package com.sparta.studywebpage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.studywebpage.dto.UserRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,13 +16,14 @@ import javax.persistence.*;
 public class User {
 
     // ID가 자동으로 생성 및 증가합니다.
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id //PK 설정
     private Long id;
 
     @Column(nullable = false, unique = true) //유니크 -> 중복허용
     private String username;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
