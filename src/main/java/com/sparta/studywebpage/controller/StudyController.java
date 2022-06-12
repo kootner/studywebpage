@@ -18,11 +18,9 @@ public class StudyController {
     private final StudyService studyService;
 
     @PostMapping("/api/poststudy")
-    public ResponseEntity<ResponseDto> createStudy(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody StudyRequestDto studyRequestDto) {
+    public ResponseEntity<ResponseDto> createStudy(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                                   @RequestBody StudyRequestDto studyRequestDto) {
         User user = userDetails.getUser();
-        studyService.createStudy(studyRequestDto,user);
-
-        return  new ResponseEntity<>(new ResponseDto(true,"등록 성공"), HttpStatus.OK);
+        return studyService.createStudy(studyRequestDto, user);
     }
-
 }

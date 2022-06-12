@@ -13,5 +13,4 @@ public class StudyRequestDto {
     private String studyContent;
     private String studyAddress;
     private String category;
-    private User user;
 }
