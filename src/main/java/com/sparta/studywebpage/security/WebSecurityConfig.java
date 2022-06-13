@@ -155,14 +155,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/user/**");
         skipPathList.add("POST,/user/signup");
 
-        // Swagger
-        skipPathList.add("GET, /swagger-ui.html");
-        skipPathList.add("GET, /swagger/**");
-        skipPathList.add("GET, /swagger-resources/**");
-        skipPathList.add("GET, /webjars/**");
-        skipPathList.add("GET, /v2/api-docs");
-
-        skipPathList.add("GET,/favicon.ico");
 
         skipPathList.add("GET,/");
 
