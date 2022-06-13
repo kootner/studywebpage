@@ -22,6 +22,5 @@ public class StudyController {
                                                    @RequestBody StudyRequestDto studyRequestDto) {
         User user = userDetails.getUser();
         return studyService.createStudy(studyRequestDto, user);
-
     }
 }
