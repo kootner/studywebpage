@@ -4,8 +4,10 @@ package com.sparta.studywebpage.security.filter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.studywebpage.dto.ResponseDto;
 import com.sparta.studywebpage.exception.CustomException;
 import com.sparta.studywebpage.exception.ErrorCode;
+import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 
 public class FormLoginFilter extends UsernamePasswordAuthenticationFilter {
@@ -40,18 +43,10 @@ public class FormLoginFilter extends UsernamePasswordAuthenticationFilter {
             JsonNode requestBody = objectMapper.readTree(request.getInputStream());
             String username = requestBody.get("username").asText();
             String password = requestBody.get("password").asText();
-//            Optional<User> user= userRepository.findByUsername(username);
-//            if(user.isPresent()){
-//                throw new IllegalArgumentException("존재하지 않는 아이디 입니다.");
-//            }
-            if(!userRepository.existsByUsername(username)){
-                throw new CustomException(ErrorCode.NOT_EXISTS_USERNAME);
-                
-            }
-
             authRequest = new UsernamePasswordAuthenticationToken(username, password);
 
         } catch (Exception e) {
+
             throw new RuntimeException("username, password 입력이 필요합니다. (JSON)");
         }
 
