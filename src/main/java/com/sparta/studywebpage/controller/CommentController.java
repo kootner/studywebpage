@@ -1,6 +1,7 @@
 package com.sparta.studywebpage.controller;
 
 import com.sparta.studywebpage.dto.CommentRequestDto;
+import com.sparta.studywebpage.dto.ResponseDto;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.security.UserDetailsImpl;
 import com.sparta.studywebpage.service.CommentService;
@@ -21,36 +22,29 @@ public class CommentController {
 
 
     @PostMapping("/postcomment/{studyId}")
-    public ResponseEntity<String> createComment(@PathVariable Long studyId,@RequestBody CommentRequestDto commentsRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-
+    public ResponseEntity<ResponseDto> createComment(@PathVariable Long studyId,
+                                                     @RequestBody CommentRequestDto commentsRequestDto,
+                                                     @AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
-        commentService.createComment(studyId,commentsRequestDto,user);
 
-        return ResponseEntity.ok()
-                .body("댓글 생성 완료");
+        return commentService.createComment(studyId,commentsRequestDto,user);
     }
 
     @PutMapping("/putcomment/{commentId}")
-    public ResponseEntity<String> updateComment(@PathVariable Long commentId,
+    public ResponseEntity<ResponseDto> updateComment(@PathVariable Long commentId,
                                                 @RequestBody CommentRequestDto commentsRequestDto,
                                                 @AuthenticationPrincipal UserDetailsImpl userDetails){
-
         User user = userDetails.getUser();
-        commentService.updateComment(commentId,commentsRequestDto,user);
 
-        return ResponseEntity.ok()
-                .body("댓글 삭제 완료");
+        return commentService.updateComment(commentId,commentsRequestDto,user);
     }
 
     @DeleteMapping("/deletecomment/{commentId}")
-    public ResponseEntity<String> deleteComment(@PathVariable Long commentId,
-                                                @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<ResponseDto> deleteComment(@PathVariable Long commentId,
+                                                     @AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
 
-        commentService.deleteComment(commentId,user);
-
-        return ResponseEntity.ok()
-                .body("댓글 삭제 완료");
+        return commentService.deleteComment(commentId,user);
     }
 
 
