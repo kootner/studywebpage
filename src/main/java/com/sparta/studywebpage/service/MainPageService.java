@@ -3,12 +3,14 @@ package com.sparta.studywebpage.service;
 
 import com.sparta.studywebpage.dto.MainPageSearchDto;
 
+import com.sparta.studywebpage.model.Study;
 import com.sparta.studywebpage.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,12 +24,40 @@ public class MainPageService {
 
     @Transactional
     public List<MainPageSearchDto> getAllMainPageByCategory(){
-        return studyRepository.getAllStudies();
+        List<MainPageSearchDto> mainPageSearchDtos = new ArrayList<>();
+        List<Study> studyList = studyRepository.findAll();
+        for(Study study:studyList){
+            String nickname = study.getUser().getNickname();
+            String title = study.getTitle();
+            String category = study.getCategory();
+            Long id = study.getId();
+            MainPageSearchDto mainPageSearchDto = new MainPageSearchDto();
+            mainPageSearchDto.setCategory(category);
+            mainPageSearchDto.setId(id);
+            mainPageSearchDto.setNickname(nickname);
+            mainPageSearchDto.setTitle(title);
+            mainPageSearchDtos.add(mainPageSearchDto);
+        }
+
+        return mainPageSearchDtos;
     }
 
     @Transactional
     public List<MainPageSearchDto> getMainPageByCategory(String category) {
-        return studyRepository.getStudies(category);
-
+        List<MainPageSearchDto> mainPageSearchDtos = new ArrayList<>();
+        List<Study> studyList = studyRepository.findAllByCategory(category);
+        for(Study study:studyList){
+            String nickname = study.getUser().getNickname();
+            String title = study.getTitle();
+            category = study.getCategory();
+            Long id = study.getId();
+            MainPageSearchDto mainPageSearchDto = new MainPageSearchDto();
+            mainPageSearchDto.setCategory(category);
+            mainPageSearchDto.setId(id);
+            mainPageSearchDto.setNickname(nickname);
+            mainPageSearchDto.setTitle(title);
+            mainPageSearchDtos.add(mainPageSearchDto);
+        }
+        return mainPageSearchDtos;
     }
 }
