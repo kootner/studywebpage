@@ -1,14 +1,12 @@
 package com.sparta.studywebpage.security;
 
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.studywebpage.repository.UserRepository;
 import com.sparta.studywebpage.security.filter.FormLoginFilter;
 import com.sparta.studywebpage.security.filter.JwtAuthFilter;
 import com.sparta.studywebpage.security.jwt.HeaderTokenExtractor;
 import com.sparta.studywebpage.security.provider.FormLoginAuthProvider;
 import com.sparta.studywebpage.security.provider.JWTAuthProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,32 +27,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@RequiredArgsConstructor
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
 @EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JWTAuthProvider jwtAuthProvider;
     private final HeaderTokenExtractor headerTokenExtractor;
-    private final UserRepository userRepository;
-    private  ObjectMapper objectMapper;
-
-    public WebSecurityConfig(
-            JWTAuthProvider jwtAuthProvider,
-            HeaderTokenExtractor headerTokenExtractor,
-            UserRepository userRepository) {
-        this.jwtAuthProvider = jwtAuthProvider;
-        this.headerTokenExtractor = headerTokenExtractor;
-        this.userRepository = userRepository;
-    }
 
     @Bean
     public BCryptPasswordEncoder encodePassword() {
         return new BCryptPasswordEncoder();
     }
 
-
     @Override
     public void configure(AuthenticationManagerBuilder auth) {
+        // CustomAuthenticationProvider()를 호출하기 위해서 Overriding
         auth
                 .authenticationProvider(formLoginAuthProvider())
                 .authenticationProvider(jwtAuthProvider);
@@ -65,22 +53,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
         web
                 .ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**")
+                .antMatchers("/v2/api-docs", "/swagger-resources/**", "**/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/swagger/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.cors().configurationSource(corsConfigurationSource());
         http.csrf().disable();
+
+        // cors설정 추가
+        http
+                .cors()
+                .configurationSource(corsConfigurationSource());
 
         // 서버에서 인증은 JWT로 인증하기 때문에 Session의 생성을 막습니다.
         http
-//                .httpBasic().disable()//rest api 만을 고려하여 기본 설정은 해제하겠습니다.
-//                .exceptionHandling()
-//                .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);//토크 기반이라 세션 사용 해제.
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         /*
          * 1.
@@ -93,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
+                .antMatchers("/v3/api-docs", "/swagger-resources/**", "**/swagger-resources/**", "/swagger-ui.html", "/webjars/**", "/swagger/**").permitAll()
                 .anyRequest()
                 .permitAll()
                 .and()
@@ -102,18 +92,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/user/logout")
                 .permitAll()
                 .and()
-                .exceptionHandling()
-                // "접근 불가" 페이지 URL 설정
-                .accessDeniedPage("/forbidden.html");
+                .exceptionHandling();
     }
 
     @Bean
     public FormLoginFilter formLoginFilter() throws Exception {
-        FormLoginFilter formLoginFilter = new FormLoginFilter(authenticationManager(), userRepository);
+        FormLoginFilter formLoginFilter = new FormLoginFilter(authenticationManager());
         formLoginFilter.setFilterProcessesUrl("/user/login");
-        formLoginFilter.setAuthenticationSuccessHandler(formLoginSuccessHandler());
-        formLoginFilter.setAuthenticationFailureHandler(formLoginFailHandler());
-
+        formLoginFilter.setAuthenticationSuccessHandler(formLoginSuccessHandler()); // 인증 성공시 호출할 핸들러 지정
         formLoginFilter.afterPropertiesSet();
         return formLoginFilter;
     }
@@ -123,39 +109,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new FormLoginSuccessHandler();
     }
 
-
-//    public void setAuthenticationFailureHandler(AuthenticationFailureHandler failureHandler) {
-//        Assert.notNull(failureHandler, "failureHandler cannot be null");
-//        this.failureHandler = failureHandler;
-//    }
-
-    @Bean
-    public FormLoginFailHandler formLoginFailHandler(){
-        return new FormLoginFailHandler();
-    }
-
-
     @Bean
     public FormLoginAuthProvider formLoginAuthProvider() {
         return new FormLoginAuthProvider(encodePassword());
     }
 
+
     private JwtAuthFilter jwtFilter() throws Exception {
         List<String> skipPathList = new ArrayList<>();
-
-        // Static 정보 접근 허용
-        skipPathList.add("GET,/images/**");
-        skipPathList.add("GET,/css/**");
 
         // h2-console 허용
         skipPathList.add("GET,/h2-console/**");
         skipPathList.add("POST,/h2-console/**");
+
         // 회원 관리 API 허용
         skipPathList.add("GET,/user/**");
-        skipPathList.add("POST,/user/signup");
+        skipPathList.add("POST,/user/**");
 
 
+        // main 페이지 허용
         skipPathList.add("GET,/");
+
+
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
                 skipPathList,
@@ -176,21 +151,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.setAllowCredentials(true) ;
         configuration.addAllowedOriginPattern("*");
-        configuration.addAllowedHeader("*");
+        configuration.addAllowedOrigin("http://localhost:3000"); // local 테스트 시
+        // 수정 필요
         configuration.addAllowedMethod("*");
-        configuration.addExposedHeader("Authorizaiton");
-        configuration.setAllowCredentials(true);
+        configuration.addAllowedHeader("*");
+        configuration.addExposedHeader("Authorization");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 }
-
-

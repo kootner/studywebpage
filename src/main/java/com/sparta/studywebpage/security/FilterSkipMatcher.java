@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class FilterSkipMatcher implements RequestMatcher {
 
     private final OrRequestMatcher orRequestMatcher;
-    private final RequestMatcher   processingMatcher;
+    private final RequestMatcher processingMatcher;
 
     public FilterSkipMatcher(
             List<String> pathToSkip,
@@ -36,7 +36,6 @@ public class FilterSkipMatcher implements RequestMatcher {
                 splitStr[0]
         );
     }
-
     @Override
     public boolean matches(HttpServletRequest req) {
         return !orRequestMatcher.matches(req) && processingMatcher.matches(req);

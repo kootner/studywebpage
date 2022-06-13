@@ -1,10 +1,9 @@
 package com.sparta.studywebpage.security.jwt;
 
-
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.interfaces.JWTVerifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,8 +16,6 @@ import static com.sparta.studywebpage.security.jwt.JwtTokenUtils.*;
 
 @Component
 public class JwtDecoder {
-
-
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     public String decodeUsername(String token) {
