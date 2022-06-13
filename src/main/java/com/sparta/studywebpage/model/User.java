@@ -30,11 +30,21 @@ public class User {
     @Column(nullable = false)
     private String nickname;
 
+    @Column(nullable = true,unique = true)//중복 불가 널값 허용
+    private Long kakaoId;
+
     public User(UserRequestDto userRequestDto){
         this.username = userRequestDto.getUsername();
         this.password = userRequestDto.getPassword();
         this.nickname = userRequestDto.getNickname();
 
+    }
+
+    public User(String username, String password,String nickname, Long kakaoId) {
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+        this.kakaoId = kakaoId;
     }
 
 }
