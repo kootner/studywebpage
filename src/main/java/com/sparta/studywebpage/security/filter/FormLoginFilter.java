@@ -43,23 +43,6 @@ public class FormLoginFilter extends UsernamePasswordAuthenticationFilter {
             JsonNode requestBody = objectMapper.readTree(request.getInputStream());
             String username = requestBody.get("username").asText();
             String password = requestBody.get("password").asText();
-            Optional<User> user= userRepository.findByUsername(username);
-            if(!user.isPresent()){
-                throw new IllegalArgumentException("존재하지 않는 아이디 입니다.");
-            }
-            System.out.println(user.get().getUsername());
-
-
-
-            if(!userRepository.existsByUsername(username)){
-                throw new CustomException(ErrorCode.NOT_EXISTS_USERNAME);
-                
-            }
-            if(!userRepository.existsByPassword(password)){
-                throw new CustomException(ErrorCode.NOT_EXISTS_PASSWORD);
-
-            }
-
             authRequest = new UsernamePasswordAuthenticationToken(username, password);
 
         } catch (Exception e) {

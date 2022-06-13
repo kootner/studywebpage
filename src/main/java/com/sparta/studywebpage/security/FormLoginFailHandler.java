@@ -2,6 +2,7 @@ package com.sparta.studywebpage.security;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.studywebpage.dto.ResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
@@ -34,15 +35,13 @@ public class FormLoginFailHandler implements AuthenticationFailureHandler {
 
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
-        Map<String, Object> data = new HashMap<>();
-        System.out.println(errorMsg);
-        data.put(
-                "exception",
-                errorMsg);
-        System.out.println(exception.toString());
-        String str = new String(objectMapper.writeValueAsString(data).getBytes("UTF-8"), "ISO-8859-1");
-        response.getOutputStream()
-                .println(str);
+        
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ResponseDto responseDto = new ResponseDto(false, errorMsg);
+        String result = mapper.writeValueAsString(responseDto);
+        response.getWriter().write(result);
 
     }
 }
