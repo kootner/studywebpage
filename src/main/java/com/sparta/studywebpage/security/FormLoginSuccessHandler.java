@@ -7,7 +7,6 @@ import com.sparta.studywebpage.dto.LoginSuccessDto;
 import com.sparta.studywebpage.security.jwt.JwtTokenUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ public class FormLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
 
     private ObjectMapper objectMapper;
 
-
     @Override
     public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response,
                                         final Authentication authentication) throws IOException {
@@ -27,9 +25,13 @@ public class FormLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
         // Token 생성
         final String token = JwtTokenUtils.generateJwtToken(userDetails);
         response.addHeader(AUTH_HEADER, TOKEN_TYPE + " " + token);
-        response.addHeader("LoginSuccessMessage","로그인 성공입니다.");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        LoginSuccessDto loginSuccessDto = new LoginSuccessDto();
+        loginSuccessDto.setSuccessMessage("로그인 성공입니다.");
 
-
+        String result = objectMapper.writeValueAsString(loginSuccessDto);
+        response.getWriter().write(result);
 
     }
 
