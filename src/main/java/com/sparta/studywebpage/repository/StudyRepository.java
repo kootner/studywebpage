@@ -22,13 +22,4 @@ public interface StudyRepository extends JpaRepository<Study, Long> {
 
 
 
-
-
-    @Query("select this.id, this.user.nickname,this.title,this.category  from Study this")
-    List<MainPageSearchDto> getAllStudies();
-
-    @Query("select this.id, this.user.nickname,this.title,this.category   from Study this where this.category =: category")
-    List<MainPageSearchDto> getStudies(@Param("category") String category);
-
-
 }
