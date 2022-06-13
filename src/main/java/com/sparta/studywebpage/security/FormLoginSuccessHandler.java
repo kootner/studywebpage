@@ -2,6 +2,7 @@ package com.sparta.studywebpage.security;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.studywebpage.dto.ResponseDto;
 import com.sparta.studywebpage.security.jwt.JwtTokenUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -25,6 +26,12 @@ public class FormLoginSuccessHandler extends SavedRequestAwareAuthenticationSucc
         final String token = JwtTokenUtils.generateJwtToken(userDetails);
         System.out.println("FormLoginSuccessHandler token = " + token);
         response.addHeader(AUTH_HEADER, TOKEN_TYPE + " " + token);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ResponseDto responseDto = new ResponseDto(true, "로그인 성공");
+        String result = mapper.writeValueAsString(responseDto);
+        response.getWriter().write(result);
 
 
     }
