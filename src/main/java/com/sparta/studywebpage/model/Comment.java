@@ -1,15 +1,12 @@
 package com.sparta.studywebpage.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sparta.studywebpage.dto.CommentRequestDto;
-import lombok.Getter;
+
+import lombok.*;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 public class Comment extends Timestamped{
@@ -28,8 +25,13 @@ public class Comment extends Timestamped{
     @Column(nullable = false)
     private String comment;
 
-    public Comment(CommentRequestDto commentsRequestDto){
-        this.comment = commentsRequestDto.getComment();
+    public Comment(String comment, User user, Study study){
+        this.comment = comment;
+        this.user = user;
+        this.study = study;
     }
 
+    public void update(String comment) {
+        this.comment = comment;
+    }
 }

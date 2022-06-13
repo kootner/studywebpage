@@ -1,18 +1,16 @@
 package com.sparta.studywebpage.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sparta.studywebpage.dto.StudyDetailRequestDto;
 import com.sparta.studywebpage.dto.StudyRequestDto;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
-@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Study {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,9 +46,10 @@ public class Study {
        this.category = studyRequestDto.getCategory();
     }
 
-    public void update(StudyRequestDto studyRequestDto) {
-        this.title = studyRequestDto.getStudyTitle();
-        this.content = studyRequestDto.getStudyContent();
-        this.address = studyRequestDto.getStudyAddress();
+    public void update(StudyDetailRequestDto studyUpdate) {
+        this.title = studyUpdate.getStudyTitle();
+        this.content = studyUpdate.getStudyContent();
+        this.address = studyUpdate.getStudyAddress();
     }
+
 }

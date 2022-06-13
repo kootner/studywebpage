@@ -25,42 +25,48 @@ public class CommentService {
 
     @Transactional
     public ResponseEntity<ResponseDto> createComment(Long studyId, CommentRequestDto commentsRequestDto, User user) {
-        Comment comment = new Comment(commentsRequestDto);
+        String comment1 = commentsRequestDto.getComment();
         Study study = studyRepository.findById(studyId).orElse(null);
-
-        if(study == null)
-            return new ResponseEntity<>(new ResponseDto(false,"등록 실패"), HttpStatus.BAD_REQUEST);
-
-        comment.setStudy(study);
-        comment.setUser(user);
-
+        Comment comment = new Comment(comment1,user,study);
+        if(study == null){
+            return  checkIdAction("등록");
+        }
         commentRepository.save(comment);
-        return new ResponseEntity<>(new ResponseDto(true,"작성 성공"), HttpStatus.OK);
+        return successAction("등록");
     }
+
     @Transactional
     public ResponseEntity<ResponseDto> updateComment(Long commentId, CommentRequestDto commentRequestDto, User user) {
         Comment comment = commentRepository.findById(commentId).orElse(null);
         if (comment == null) {
-            return new ResponseEntity<>(new ResponseDto(false, "수정 실패"), HttpStatus.BAD_REQUEST);
+            return checkIdAction("수정");
         }
         if(!user.getId().equals(comment.getUser().getId())) {
-            return new ResponseEntity<>(new ResponseDto(false,"수정 실패"), HttpStatus.BAD_REQUEST);
+            return checkIdAction("수정");
         }
-        comment.setComment(commentRequestDto.getComment());
+        comment.update(commentRequestDto.getComment());
         commentRepository.save(comment);
-        return new ResponseEntity<>(new ResponseDto(true,"수정 성공"), HttpStatus.OK);
+        return successAction("수정");
     }
 
     @Transactional
     public ResponseEntity<ResponseDto> deleteComment(Long commentId, User user) {
         Comment comment = commentRepository.findById(commentId).orElse(null);
         if (comment == null) {
-            return new ResponseEntity<>(new ResponseDto(false, "삭제 실패"), HttpStatus.BAD_REQUEST);
+           return checkIdAction("삭제");
         }
         if(!user.getId().equals(comment.getUser().getId())){
-            return new ResponseEntity<>(new ResponseDto(false, "삭제 실패"), HttpStatus.BAD_REQUEST);
+            return  checkIdAction("삭제");
         }
         commentRepository.delete(comment);
-        return new ResponseEntity<>(new ResponseDto(true,"삭제 성공"), HttpStatus.OK);
+        return successAction("삭제");
+    }
+
+    public ResponseEntity<ResponseDto> checkIdAction (String action){
+        return new ResponseEntity<>(new ResponseDto(false, action+" 실패"), HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<ResponseDto> successAction (String action){
+        return new ResponseEntity<>(new ResponseDto(true, action+" 성공"), HttpStatus.OK);
     }
 }

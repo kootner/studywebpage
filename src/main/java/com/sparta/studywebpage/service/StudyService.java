@@ -22,8 +22,13 @@ public class StudyService {
 
     @Transactional
     public ResponseEntity<ResponseDto> createStudy(StudyRequestDto studyRequestDto, User user) {
-
-        Study study = new Study(studyRequestDto,user);
+        Study study = Study.builder()
+                .category(studyRequestDto.getCategory())
+                .title(studyRequestDto.getStudyTitle())
+                .address(studyRequestDto.getStudyAddress())
+                .content(studyRequestDto.getStudyContent())
+                .user(user)
+                .build();
         try{
             checkStudy(study);
         } catch (CustomException e) {
