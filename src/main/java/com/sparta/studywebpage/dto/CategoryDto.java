@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class CategoryDto {
-    String Category;
+    String category;
 }

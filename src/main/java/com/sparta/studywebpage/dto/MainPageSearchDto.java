@@ -1,5 +1,6 @@
 package com.sparta.studywebpage.dto;
 
+import com.sparta.studywebpage.model.Study;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,4 +12,12 @@ public class MainPageSearchDto {
      String userNickname;
      String category;
      Long studyId;
+
+
+     public MainPageSearchDto(Study study) {
+          this.studyTitle = study.getTitle();
+          this.userNickname = study.getUser().getNickname();
+          this.category = study.getCategory();
+          this.studyId = study.getId();
+     }
 }

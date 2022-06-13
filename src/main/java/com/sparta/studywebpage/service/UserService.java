@@ -21,7 +21,6 @@ import javax.transaction.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserServiceValidator userServiceValidator;
@@ -37,6 +36,7 @@ public class UserService {
         requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
         User user = new User(requestDto);
         userRepository.save(user);
+
         return new ResponseEntity<>(new ResponseDto(true,"회원가입 성공"), HttpStatus.OK);
     }
 

@@ -27,18 +27,9 @@ public class MainPageService {
         List<MainPageSearchDto> mainPageSearchDtos = new ArrayList<>();
         List<Study> studyList = studyRepository.findAll();
         for(Study study:studyList){
-            String nickname = study.getUser().getNickname();
-            String title = study.getTitle();
-            String category = study.getCategory();
-            Long id = study.getId();
-            MainPageSearchDto mainPageSearchDto = new MainPageSearchDto();
-            mainPageSearchDto.setCategory(category);
-            mainPageSearchDto.setStudyId(id);
-            mainPageSearchDto.setUserNickname(nickname);
-            mainPageSearchDto.setStudyTitle(title);
+            MainPageSearchDto mainPageSearchDto = new MainPageSearchDto(study);
             mainPageSearchDtos.add(mainPageSearchDto);
         }
-
         return mainPageSearchDtos;
     }
 
@@ -51,7 +42,7 @@ public class MainPageService {
             String title = study.getTitle();
             category = study.getCategory();
             Long id = study.getId();
-            MainPageSearchDto mainPageSearchDto = new MainPageSearchDto();
+            MainPageSearchDto mainPageSearchDto = new MainPageSearchDto(study);
             mainPageSearchDto.setCategory(category);mainPageSearchDto.setCategory(category);
             mainPageSearchDto.setStudyId(id);
             mainPageSearchDto.setUserNickname(nickname);
