@@ -33,9 +33,9 @@ public class MainPageService {
             Long id = study.getId();
             MainPageSearchDto mainPageSearchDto = new MainPageSearchDto();
             mainPageSearchDto.setCategory(category);
-            mainPageSearchDto.setId(id);
-            mainPageSearchDto.setNickname(nickname);
-            mainPageSearchDto.setTitle(title);
+            mainPageSearchDto.setStudyId(id);
+            mainPageSearchDto.setUserNickname(nickname);
+            mainPageSearchDto.setStudyTitle(title);
             mainPageSearchDtos.add(mainPageSearchDto);
         }
 
@@ -52,10 +52,10 @@ public class MainPageService {
             category = study.getCategory();
             Long id = study.getId();
             MainPageSearchDto mainPageSearchDto = new MainPageSearchDto();
-            mainPageSearchDto.setCategory(category);
-            mainPageSearchDto.setId(id);
-            mainPageSearchDto.setNickname(nickname);
-            mainPageSearchDto.setTitle(title);
+            mainPageSearchDto.setCategory(category);mainPageSearchDto.setCategory(category);
+            mainPageSearchDto.setStudyId(id);
+            mainPageSearchDto.setUserNickname(nickname);
+            mainPageSearchDto.setStudyTitle(title);
             mainPageSearchDtos.add(mainPageSearchDto);
         }
         return mainPageSearchDtos;

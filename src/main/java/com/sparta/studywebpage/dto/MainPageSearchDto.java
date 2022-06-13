@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Getter
 public class MainPageSearchDto {
 
-    String nickname;
-
-    String title;
-
-    String category;
-
-    Long id;
+     String studyTitle;
+     String userNickname;
+     String category;
+     Long studyId;
 }
