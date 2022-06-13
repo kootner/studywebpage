@@ -10,6 +10,7 @@ import com.sparta.studywebpage.model.Comment;
 import com.sparta.studywebpage.model.Study;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.StudyRepository;
+import com.sparta.studywebpage.security.UserDetailsImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class StudyDetailService {
         Study study = studyRepository.findById(studyid).orElse(null);
         assert study != null;
         User user = study.getUser();
-        List<CommentResponseDto> commentList = study.getCommentList().stream().map(CommentResponseDto:: new).collect(Collectors.toList());
+        List<CommentResponseDto> commentList = study.getCommentList().stream().map(CommentResponseDto::new).collect(Collectors.toList());
 
         studyDetailDto.setStudyTitle(study.getTitle());
         studyDetailDto.setStudyContent(study.getContent());
@@ -66,12 +67,22 @@ public class StudyDetailService {
 
     }
 
-    public void deleteStudyDetail(@PathVariable Long studyid) {
+    public ResponseEntity<ResponseDto> deleteStudyDetail(@PathVariable Long studyid, UserDetailsImpl userDetails) {
         Study study = studyRepository.findById(studyid).orElseThrow(() ->
                 new IllegalArgumentException("삭제 실패"));
-        studyRepository.delete(study);
 
+        if (!study.getUser().getUsername().equals(userDetails.getUsername()))
+            return new ResponseEntity<>(new ResponseDto(false, "삭제 실패"), HttpStatus.BAD_REQUEST);
+
+        studyRepository.delete(study);
+        return new ResponseEntity<>(new ResponseDto(true, "삭제 성공"), HttpStatus.OK);
 
     }
+//
+//    public void checkStudy(Study study){
+//        if(study.getUser().getUsername() == ){
+//            throw new CustomException(ErrorCode.NULL_TITLE);
+//        }
+//    }
 
 }
