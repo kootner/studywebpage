@@ -1,8 +1,9 @@
 package com.sparta.studywebpage.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
-
+@Setter
 @Getter
 public class MainPageSearchDto {
 
@@ -12,5 +13,5 @@ public class MainPageSearchDto {
 
     String category;
 
-    String id;
+    Long id;
 }

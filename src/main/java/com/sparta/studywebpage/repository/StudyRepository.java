@@ -16,6 +16,13 @@ public interface StudyRepository extends JpaRepository<Study, Long> {
 
     Optional<Study> findById(Long id);
 
+    List<Study> findAll();
+
+    List<Study> findAllByCategory(String category);
+
+
+
+
 
     @Query("select this.id, this.user.nickname,this.title,this.category  from Study this")
     List<MainPageSearchDto> getAllStudies();
