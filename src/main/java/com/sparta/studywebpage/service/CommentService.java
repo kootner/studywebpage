@@ -27,9 +27,9 @@ public class CommentService {
     public ResponseEntity<ResponseDto> createComment(Long studyId, CommentRequestDto commentsRequestDto, User user) {
         String comment1 = commentsRequestDto.getComment();
         Study study = studyRepository.findById(studyId).orElse(null);
-        Comment comment = new Comment(comment1,user,study);
-        if(study == null){
-            return  checkIdAction("등록");
+        Comment comment = new Comment(comment1, user, study);
+        if (study == null) {
+            return checkIdAction("등록");
         }
         commentRepository.save(comment);
         return successAction("등록");
@@ -41,7 +41,7 @@ public class CommentService {
         if (comment == null) {
             return checkIdAction("수정");
         }
-        if(!user.getId().equals(comment.getUser().getId())) {
+        if (!user.getId().equals(comment.getUser().getId())) {
             return checkIdAction("수정");
         }
         comment.update(commentRequestDto.getComment());
@@ -53,20 +53,20 @@ public class CommentService {
     public ResponseEntity<ResponseDto> deleteComment(Long commentId, User user) {
         Comment comment = commentRepository.findById(commentId).orElse(null);
         if (comment == null) {
-           return checkIdAction("삭제");
+            return checkIdAction("삭제");
         }
-        if(!user.getId().equals(comment.getUser().getId())){
-            return  checkIdAction("삭제");
+        if (!user.getId().equals(comment.getUser().getId())) {
+            return checkIdAction("삭제");
         }
         commentRepository.delete(comment);
         return successAction("삭제");
     }
 
-    public ResponseEntity<ResponseDto> checkIdAction (String action){
-        return new ResponseEntity<>(new ResponseDto(false, action+" 실패"), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ResponseDto> checkIdAction(String action) {
+        return new ResponseEntity<>(new ResponseDto(false, action + " 실패"), HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<ResponseDto> successAction (String action){
-        return new ResponseEntity<>(new ResponseDto(true, action+" 성공"), HttpStatus.OK);
+    public ResponseEntity<ResponseDto> successAction(String action) {
+        return new ResponseEntity<>(new ResponseDto(true, action + " 성공"), HttpStatus.OK);
     }
 }

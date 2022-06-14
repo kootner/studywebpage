@@ -48,7 +48,6 @@ public class StudyDetailService {
         } else{
             return checkIdAction("수정");
         }
-
         return successAction("삭제");
     }
 
