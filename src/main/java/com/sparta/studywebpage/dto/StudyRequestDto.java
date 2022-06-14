@@ -1,10 +1,8 @@
 package com.sparta.studywebpage.dto;
 
-import com.sparta.studywebpage.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 
 @Setter
 @Getter
