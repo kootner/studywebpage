@@ -1,7 +1,6 @@
 package com.sparta.studywebpage.dto;
 
 
-import com.sparta.studywebpage.model.Comment;
 import lombok.Getter;
 import lombok.Setter;
 

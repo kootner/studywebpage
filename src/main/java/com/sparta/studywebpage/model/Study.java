@@ -1,17 +1,15 @@
 package com.sparta.studywebpage.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.sparta.studywebpage.dto.StudyRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 public class Study {

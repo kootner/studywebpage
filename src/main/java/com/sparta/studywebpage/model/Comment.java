@@ -1,6 +1,5 @@
 package com.sparta.studywebpage.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sparta.studywebpage.dto.CommentRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 public class Comment extends Timestamped{

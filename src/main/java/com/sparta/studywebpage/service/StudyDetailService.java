@@ -4,9 +4,6 @@ import com.sparta.studywebpage.dto.CommentResponseDto;
 import com.sparta.studywebpage.dto.ResponseDto;
 import com.sparta.studywebpage.dto.StudyDetailDto;
 import com.sparta.studywebpage.dto.StudyDetailRequestDto;
-import com.sparta.studywebpage.exception.CustomException;
-import com.sparta.studywebpage.exception.ErrorCode;
-import com.sparta.studywebpage.model.Comment;
 import com.sparta.studywebpage.model.Study;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.StudyRepository;
@@ -15,12 +12,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -29,7 +24,7 @@ public class StudyDetailService {
 
     private final StudyRepository studyRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public StudyDetailDto readStudyDetail(@PathVariable Long studyid) {
 
         StudyDetailDto studyDetailDto = new StudyDetailDto();
@@ -57,7 +52,7 @@ public class StudyDetailService {
             return new ResponseEntity<>(new ResponseDto(false, "수정 실패"), HttpStatus.BAD_REQUEST);
 
         if (requestDto.getStudyTitle() != null && requestDto.getStudyContent() != null && requestDto.getStudyAddress() != null) {
-            study.setTitle(requestDto.getStudyTitle());
+
             study.setContent(requestDto.getStudyContent());
             study.setAddress(requestDto.getStudyAddress());
         } else
@@ -78,11 +73,4 @@ public class StudyDetailService {
         return new ResponseEntity<>(new ResponseDto(true, "삭제 성공"), HttpStatus.OK);
 
     }
-//
-//    public void checkStudy(Study study){
-//        if(study.getUser().getUsername() == ){
-//            throw new CustomException(ErrorCode.NULL_TITLE);
-//        }
-//    }
-
 }
