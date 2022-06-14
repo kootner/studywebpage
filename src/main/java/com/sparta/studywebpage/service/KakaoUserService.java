@@ -39,13 +39,13 @@ public class KakaoUserService {
 
     public KakaoUserResponseDto kakaoLogin(String code, HttpServletResponse response) throws JsonProcessingException {
         String accessToken = getAccessToken(code);
-        KakaoUserInfoDto kakaoUserRequestDto = getKakaoUserInfo(accessToken);
+        KakaoUserRequestDto kakaoUserRequestDto = getKakaoUserInfo(accessToken);
 
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserRequestDto);
         return forceLoginUser(kakaoUser, response);
     }
 
-    private KakaoUserInfoDto getKakaoUserInfo(String accessToken) throws JsonProcessingException {
+    private KakaoUserRequestDto getKakaoUserInfo(String accessToken) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
@@ -71,7 +71,7 @@ public class KakaoUserService {
                 .get("email").asText();
         System.out.println(4);
         System.out.println("카카오 사용자 정보: " + id + ", " + nickname + ", " + email);
-        return new KakaoUserInfoDto(id, nickname,email);
+        return new KakaoUserRequestDto(id, nickname,email);
     }
 
     private String getAccessToken(String code) throws JsonProcessingException {
@@ -106,22 +106,22 @@ public class KakaoUserService {
         return jsonNode.get("access_token").asText();
     }
 
-    private User registerKakaoUserIfNeeded(KakaoUserInfoDto kakaoUserInfo) {
+    private User registerKakaoUserIfNeeded(KakaoUserRequestDto kakaoUserRequestDto) {
         // DB 에 중복된 Kakao Id 가 있는지 확인
-        Long kakaoId = kakaoUserInfo.getId();
+        Long kakaoId = kakaoUserRequestDto.getId();
         User kakaoUser = userRepository.findByKakaoId(kakaoId)
                 .orElse(null);
         if (kakaoUser == null) {
             // 회원가입
             // username: kakao nickname
-            String nickname = kakaoUserInfo.getNickname();
+            String nickname = kakaoUserRequestDto.getNickname();
 
             // password: random UUID
             String password = UUID.randomUUID().toString();
             String encodedPassword = passwordEncoder.encode(password);
 
             // email: kakao email
-            String username = kakaoUserInfo.getEmail();
+            String username = kakaoUserRequestDto.getEmail();
             // role: 일반 사용자
 
 
