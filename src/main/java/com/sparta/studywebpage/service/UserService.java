@@ -30,7 +30,7 @@ public class UserService {
         try {
             userServiceValidator.signupValidation(requestDto);
             String password = passwordEncoder.encode(requestDto.getPassword());
-            User user = new User(requestDto.getUsername(),requestDto.getNickname(),password);
+            User user = new User(requestDto.getUsername(),password,requestDto.getNickname());
             userRepository.save(user);
 
             return new ResponseEntity<>(new ResponseDto(true,"회원가입 성공"), HttpStatus.OK);
