@@ -6,7 +6,6 @@ import com.sparta.studywebpage.dto.StudyDetailRequestDto;
 import com.sparta.studywebpage.security.UserDetailsImpl;
 import com.sparta.studywebpage.service.StudyDetailService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

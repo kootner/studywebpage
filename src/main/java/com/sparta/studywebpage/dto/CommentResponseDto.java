@@ -15,15 +15,15 @@ import java.time.LocalDateTime;
 public class CommentResponseDto {
 
     private User user;
-    private String comment;
+    private String commentContent;
     private Long commentId;
     private LocalDateTime createdAt;
 
-    public CommentResponseDto(Comment comment){
-        this.user = comment.getUser();
-        this.comment = comment.getComment();
-        this.commentId = comment.getId();
-        this.createdAt = comment.getCreatedAt();
+    public CommentResponseDto(Comment commentContent){
+        this.user = commentContent.getUser();
+        this.commentContent = commentContent.getComment();
+        this.commentId = commentContent.getId();
+        this.createdAt = commentContent.getCreatedAt();
     }
 
 }

@@ -2,8 +2,6 @@ package com.sparta.studywebpage.service;
 
 import com.sparta.studywebpage.dto.CommentRequestDto;
 import com.sparta.studywebpage.dto.ResponseDto;
-import com.sparta.studywebpage.exception.CustomException;
-import com.sparta.studywebpage.exception.ErrorCode;
 import com.sparta.studywebpage.model.Comment;
 import com.sparta.studywebpage.model.Study;
 import com.sparta.studywebpage.model.User;
@@ -25,7 +23,7 @@ public class CommentService {
 
     @Transactional
     public ResponseEntity<ResponseDto> createComment(Long studyId, CommentRequestDto commentsRequestDto, User user) {
-        String comment1 = commentsRequestDto.getComment();
+        String comment1 = commentsRequestDto.getCommentContent();
         Study study = studyRepository.findById(studyId).orElse(null);
         Comment comment = new Comment(comment1, user, study);
         if (study == null) {
@@ -44,7 +42,7 @@ public class CommentService {
         if (!user.getId().equals(comment.getUser().getId())) {
             return checkIdAction("수정");
         }
-        comment.update(commentRequestDto.getComment());
+        comment.update(commentRequestDto.getCommentContent());
         commentRepository.save(comment);
         return successAction("수정");
     }
