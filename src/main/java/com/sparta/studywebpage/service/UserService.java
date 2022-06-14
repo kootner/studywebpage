@@ -29,15 +29,14 @@ public class UserService {
     public ResponseEntity<ResponseDto> registerUser(UserRequestDto requestDto){
         try {
             userServiceValidator.signupValidation(requestDto);
+            String password = passwordEncoder.encode(requestDto.getPassword());
+            User user = new User(requestDto.getUsername(),requestDto.getNickname(),password);
+            userRepository.save(user);
+
+            return new ResponseEntity<>(new ResponseDto(true,"회원가입 성공"), HttpStatus.OK);
         } catch (CustomException e){
             return new ResponseEntity<>(new ResponseDto(false, e.getMessage()), HttpStatus.BAD_REQUEST);
         }
-
-        requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        User user = new User(requestDto);
-        userRepository.save(user);
-
-        return new ResponseEntity<>(new ResponseDto(true,"회원가입 성공"), HttpStatus.OK);
     }
 
 
