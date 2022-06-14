@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,9 @@ public class StudyDetailService {
         assert study != null;
         User user = study.getUser();
         List<CommentResponseDto> commentList = study.getCommentList().stream().map(CommentResponseDto::new).collect(Collectors.toList());
+
+
+
 
         return new StudyDetailDto(study,user,commentList);
     }
