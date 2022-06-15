@@ -25,7 +25,7 @@ public class CommentResponseDto {
         this.username = commentLocalDateTimeDto.getUsername();
         this.commentContent = commentLocalDateTimeDto.getCommentContent();
         this.commentId = commentLocalDateTimeDto.getCommentId();
-        this.createdAt = commentLocalDateTimeDto.getCreatedAt().format(DateTimeFormatter.ofPattern("MM월 dd일 E요일"));
+        this.createdAt = commentLocalDateTimeDto.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 E요일"));
     }
 
 }
