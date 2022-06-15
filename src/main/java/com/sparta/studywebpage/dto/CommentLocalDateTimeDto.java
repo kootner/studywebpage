@@ -17,7 +17,6 @@ public class CommentLocalDateTimeDto {
     private String username;
     private String commentContent;
     private Long commentId;
-
     private LocalDateTime createdAt;
 
     public CommentLocalDateTimeDto(Comment commentContent){
@@ -25,6 +24,7 @@ public class CommentLocalDateTimeDto {
         this.username = commentContent.getUser().getUsername();
         this.commentContent = commentContent.getComment();
         this.commentId = commentContent.getId();
+        this.createdAt =commentContent.getCreatedAt();
     }
 
 }
