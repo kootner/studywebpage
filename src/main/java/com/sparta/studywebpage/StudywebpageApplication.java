@@ -9,9 +9,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableJpaAuditing
 public class StudywebpageApplication {
-    static {
-        System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
-    }
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(StudywebpageApplication.class)
