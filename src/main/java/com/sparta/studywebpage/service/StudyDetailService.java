@@ -1,9 +1,6 @@
 package com.sparta.studywebpage.service;
 
-import com.sparta.studywebpage.dto.CommentResponseDto;
-import com.sparta.studywebpage.dto.ResponseDto;
-import com.sparta.studywebpage.dto.StudyDetailDto;
-import com.sparta.studywebpage.dto.StudyDetailRequestDto;
+import com.sparta.studywebpage.dto.*;
 import com.sparta.studywebpage.model.Study;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.StudyRepository;
@@ -15,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,10 +29,12 @@ public class StudyDetailService {
         Study study = studyRepository.findById(studyid).orElse(null);
         assert study != null;
         User user = study.getUser();
-        List<CommentResponseDto> commentList = study.getCommentList().stream().map(CommentResponseDto::new).collect(Collectors.toList());
-
-
-
+        List<CommentLocalDateTimeDto> List = study.getCommentList().stream().map(CommentLocalDateTimeDto::new).collect(Collectors.toList());
+        List<CommentResponseDto> commentList = new ArrayList<>();
+        for(CommentLocalDateTimeDto commentLocalDateTimeDto :List){
+            CommentResponseDto commentResponseDto = new CommentResponseDto(commentLocalDateTimeDto);
+            commentList.add(commentResponseDto);
+        }
 
         return new StudyDetailDto(study,user,commentList);
     }

@@ -1,13 +1,12 @@
 package com.sparta.studywebpage.dto;
 
-
 import com.sparta.studywebpage.model.Comment;
-import com.sparta.studywebpage.model.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -19,11 +18,14 @@ public class CommentResponseDto {
     private String commentContent;
     private Long commentId;
 
-    public CommentResponseDto(Comment commentContent){
-        this.userNickname = commentContent.getUser().getNickname();
-        this.username = commentContent.getUser().getUsername();
-        this.commentContent = commentContent.getComment();
-        this.commentId = commentContent.getId();
+    private String createdAt;
+
+    public CommentResponseDto(CommentLocalDateTimeDto commentLocalDateTimeDto){
+        this.userNickname = commentLocalDateTimeDto.getUserNickname();
+        this.username = commentLocalDateTimeDto.getUsername();
+        this.commentContent = commentLocalDateTimeDto.getCommentContent();
+        this.commentId = commentLocalDateTimeDto.getCommentId();
+        this.createdAt = commentLocalDateTimeDto.getCreatedAt().format(DateTimeFormatter.ofPattern("MM월 dd일 E요일"));
     }
 
 }
