@@ -29,7 +29,7 @@ public class UserController {
         return userService.registerUser(requestDto);
     }
 
-    @GetMapping("/user/kakao/callback")
+    @GetMapping("/kakao/callback")
     public ResponseEntity<KakaoUserResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         KakaoUserResponseDto kakaoUserResponseDto = kakaoUserService.kakaoLogin(code, response);
         return ResponseEntity.ok().body(kakaoUserResponseDto);
