@@ -30,6 +30,10 @@ public enum ErrorCode {
     NOT_EXISTS_PASSWORD(HttpStatus.BAD_REQUEST, "400_11", "존재하지 않는 비밀번호입니다."),
 
 
+    NOT_EXISTS_KAKAOEMAIL(HttpStatus.BAD_REQUEST, "400_12", "카카오 이메일이 존재하지 않습니다."),
+
+
+
 
 
     WRONG_USER(HttpStatus.BAD_REQUEST, "400", "올바른 유저가 아닙니다."),
