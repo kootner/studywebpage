@@ -20,4 +20,5 @@ public class HelloController {
         s3Uploader.upload(multipartFile, "static");
         return "test";
     }
+    
 }
