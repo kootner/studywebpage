@@ -10,6 +10,7 @@ import com.sparta.studywebpage.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @RequestMapping("/user")
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class UserController {
     private final UserService userService;
 
@@ -30,9 +31,9 @@ public class UserController {
     }
 
     @GetMapping("/kakao/callback")
-    public ResponseEntity<KakaoUserResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         KakaoUserResponseDto kakaoUserResponseDto = kakaoUserService.kakaoLogin(code, response);
-        return ResponseEntity.ok().body(kakaoUserResponseDto);
+        return "redirect:http://localhost:3000";
     }
 
 
