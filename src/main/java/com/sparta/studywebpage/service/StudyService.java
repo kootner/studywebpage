@@ -25,6 +25,7 @@ public class StudyService {
         Study study = Study.builder()
                 .category(studyRequestDto.getCategory())
                 .title(studyRequestDto.getStudyTitle())
+                .imageUrl(studyRequestDto.getImageUrl())
                 .address(studyRequestDto.getStudyAddress())
                 .content(studyRequestDto.getStudyContent())
                 .user(user)
