@@ -11,14 +11,14 @@ public class MainPageSearchDto {
      String studyTitle;
      String userNickname;
      String category;
-     String imageUrl;
+//     String imageUrl;
      Long studyId;
 
 
      public MainPageSearchDto(Study study) {
           this.studyTitle = study.getTitle();
           this.userNickname = study.getUser().getNickname();
-          this.imageUrl = study.getImageUrl();
+//          this.imageUrl = study.getImageUrl();
           this.category = study.getCategory();
           this.studyId = study.getId();
      }

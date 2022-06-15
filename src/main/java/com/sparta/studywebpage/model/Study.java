@@ -20,8 +20,9 @@ public class Study {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private String imageUrl;
+//    @Column(nullable = false)
+//    private String imageUrl;
+
     @Column(nullable = false)
     private String content;
 
@@ -44,7 +45,7 @@ public class Study {
        this.title = studyRequestDto.getStudyTitle();
        this.content = studyRequestDto.getStudyContent();
        this.address = studyRequestDto.getStudyAddress();
-       this.imageUrl = studyRequestDto.getImageUrl();
+//       this.imageUrl = studyRequestDto.getImageUrl();
        this.user = user;
        this.category = studyRequestDto.getCategory();
     }
