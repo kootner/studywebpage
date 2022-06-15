@@ -4,8 +4,9 @@ cloud:
       accessKey: AKIAVASKTWL6FPNMW2TK
       secretKey: 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
     s3:
-      bucket: studyweb-bucket
+      bucket: studybk
     region:
       static: ap-northeast-2
+      auto: false
     stack:
       auto: false

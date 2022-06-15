@@ -10,12 +10,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableJpaAuditing
 public class StudywebpageApplication {
-    public static final String APPLICATION_LOCATIONS = "spring.config.location="
-            + "classpath:aws.yml";
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(StudywebpageApplication.class)
-                .properties(APPLICATION_LOCATIONS)
                 .run(args);
     }
 }

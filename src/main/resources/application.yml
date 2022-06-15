@@ -1,6 +1,6 @@
-logging:
-  level:
-    com:
-      amazonaws:
-        util:
-         EC2MetadataUtils: error
+#logging:
+#  level:
+#    com:
+#      amazonaws:
+#        util:
+#         EC2MetadataUtils: error
