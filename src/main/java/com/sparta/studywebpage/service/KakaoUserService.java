@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.studywebpage.dto.KakaoUserInfoDto;
 import com.sparta.studywebpage.dto.KakaoUserRequestDto;
 import com.sparta.studywebpage.dto.KakaoUserResponseDto;
+import com.sparta.studywebpage.exception.CustomException;
+import com.sparta.studywebpage.exception.ErrorCode;
 import com.sparta.studywebpage.model.User;
 import com.sparta.studywebpage.repository.UserRepository;
 import com.sparta.studywebpage.security.UserDetailsImpl;
@@ -122,10 +124,13 @@ public class KakaoUserService {
 
             // email: kakao email
             String username = kakaoUserRequestDto.getEmail();
+            if(username.equals("")){
+                throw new CustomException(ErrorCode.NOT_EXISTS_KAKAOEMAIL);
+            }
             // role: 일반 사용자
 
 
-            kakaoUser = new User(nickname, encodedPassword, username, kakaoId);
+            kakaoUser = new User(username, encodedPassword, nickname, kakaoId);
             userRepository.save(kakaoUser);
         }
         return kakaoUser;
@@ -142,7 +147,7 @@ public class KakaoUserService {
         response.addHeader("Authorization", "Bearer " + token);
 
         if (kakaoUser.getUsername().equals("")) {
-            boolean result = true;
+            boolean result = false;
             return KakaoUserResponseDto.builder()
                     .JWtToken(token)
                     .username(username)
@@ -150,7 +155,7 @@ public class KakaoUserService {
                     .build();
 
         } else {
-            boolean result = false;
+            boolean result = true;
             return KakaoUserResponseDto.builder()
                     .JWtToken(token)
                     .username(username)

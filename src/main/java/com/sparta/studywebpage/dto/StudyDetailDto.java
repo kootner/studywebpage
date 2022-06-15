@@ -18,12 +18,15 @@ public class StudyDetailDto {
     private String studyAddress;
     private String userNickname;
     private String username;
+
+    private String category;
     private List<CommentResponseDto> commentList;
 
     public StudyDetailDto(Study study, User user, List<CommentResponseDto> commentList){
         this.studyTitle = study.getTitle();
         this.studyContent = study.getContent();
         this.studyAddress = study.getAddress();
+        this.category = study.getCategory();
         this.userNickname = user.getNickname();
         this.username = user.getUsername();
         this.commentList = commentList;
