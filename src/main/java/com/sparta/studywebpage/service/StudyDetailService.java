@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,12 +30,12 @@ public class StudyDetailService {
         User user = study.getUser();
         List<CommentLocalDateTimeDto> List = study.getCommentList().stream().map(CommentLocalDateTimeDto::new).collect(Collectors.toList());
         List<CommentResponseDto> commentList = new ArrayList<>();
-        for(CommentLocalDateTimeDto commentLocalDateTimeDto :List){
+        for (CommentLocalDateTimeDto commentLocalDateTimeDto : List) {
             CommentResponseDto commentResponseDto = new CommentResponseDto(commentLocalDateTimeDto);
             commentList.add(commentResponseDto);
         }
 
-        return new StudyDetailDto(study,user,commentList);
+        return new StudyDetailDto(study, user, commentList);
     }
 
 
@@ -50,7 +49,7 @@ public class StudyDetailService {
 
         if (requestDto.getStudyTitle() != null && requestDto.getStudyContent() != null && requestDto.getStudyAddress() != null) {
             study.update(requestDto);
-        } else{
+        } else {
             return checkIdAction("수정");
         }
         return successAction("수정");
@@ -69,13 +68,12 @@ public class StudyDetailService {
     }
 
 
-
-    public ResponseEntity<ResponseDto> checkIdAction (String action){
-        return new ResponseEntity<>(new ResponseDto(false, action+" 실패"), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ResponseDto> checkIdAction(String action) {
+        return new ResponseEntity<>(new ResponseDto(false, action + " 실패"), HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<ResponseDto> successAction (String action){
-        return new ResponseEntity<>(new ResponseDto(true, action+" 성공"), HttpStatus.OK);
+    public ResponseEntity<ResponseDto> successAction(String action) {
+        return new ResponseEntity<>(new ResponseDto(true, action + " 성공"), HttpStatus.OK);
     }
 
 }

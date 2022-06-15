@@ -22,33 +22,33 @@ public class StudyService {
 
     @Transactional
     public ResponseEntity<ResponseDto> createStudy(StudyRequestDto studyRequestDto, User user) {
-        Study study = Study.builder()
-                .category(studyRequestDto.getCategory())
-                .title(studyRequestDto.getStudyTitle())
-//                .imageUrl(studyRequestDto.getImageUrl())
-                .address(studyRequestDto.getStudyAddress())
-                .content(studyRequestDto.getStudyContent())
-                .user(user)
-                .build();
-        try{
+        try {
+            Study study = Study.builder()
+                    .category(studyRequestDto.getCategory())
+                    .title(studyRequestDto.getStudyTitle())
+                    .imageUrl(studyRequestDto.getImageUrl())
+                    .address(studyRequestDto.getStudyAddress())
+                    .content(studyRequestDto.getStudyContent())
+                    .user(user)
+                    .build();
             checkStudy(study);
+            studyRepository.save(study);
+            return new ResponseEntity<>(new ResponseDto(true, "작성 성공"), HttpStatus.OK);
         } catch (CustomException e) {
-            return new ResponseEntity<>(new ResponseDto(false,e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseDto(false, e.getMessage()), HttpStatus.BAD_REQUEST);
         }
-        studyRepository.save(study);
-        return new ResponseEntity<>(new ResponseDto(true,"작성 성공"), HttpStatus.OK);
 
     }
 
 
-    public void checkStudy(Study study){
-        if(study.getTitle() == null){
+    public void checkStudy(Study study) {
+        if (study.getTitle() == null) {
             throw new CustomException(ErrorCode.NULL_TITLE);
         }
-        if(study.getAddress() == null){
+        if (study.getAddress() == null) {
             throw new CustomException(ErrorCode.NULL_ADDRESS);
         }
-        if(study.getContent() == null) {
+        if (study.getContent() == null) {
             throw new CustomException(ErrorCode.NULL_CONTENT);
         }
     }
