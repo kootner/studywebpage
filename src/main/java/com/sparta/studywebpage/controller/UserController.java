@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @RequestMapping("/user")
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class UserController {
     private final UserService userService;
 
@@ -31,9 +31,9 @@ public class UserController {
     }
 
     @GetMapping("/kakao/callback")
-    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public ResponseEntity<KakaoUserResponseDto>  kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         KakaoUserResponseDto kakaoUserResponseDto = kakaoUserService.kakaoLogin(code, response);
-        return "redirect:http://localhost:3000";
+        return ResponseEntity.ok().body(kakaoUserResponseDto);
     }
 
 
