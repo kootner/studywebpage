@@ -49,8 +49,21 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce90374654a0a6c2f5792f6b52
 
 ## 프로젝트 화면
-<>
+<로그인 페이지>
 ![](https://user-images.githubusercontent.com/105117965/174049537-7b509dc0-bed4-4bdf-b2fc-480dd2092dc5.png)
+
+<회원가입 페이지>
+![](https://user-images.githubusercontent.com/105117965/174049890-834a0af3-dd5d-4147-8224-1a85fc7d2ee5.png)
+
+<메인 페이지>
+![](https://user-images.githubusercontent.com/105117965/174049987-25178225-0e11-4eda-a8c9-1efc6e609e41.png)
+
+<작성 페이지>
+![](https://user-images.githubusercontent.com/105117965/174050090-eeb9fd26-7748-413f-b199-fa1548f2e675.png)
+
+<상세 페이지>
+![](https://user-images.githubusercontent.com/105117965/174050150-8917163d-359d-44bc-979b-0bd424ada5a8.png)
+
 
 ## 프로젝트 후기
 
