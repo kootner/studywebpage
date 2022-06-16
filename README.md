@@ -31,6 +31,7 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 
 
 ## 기능 요약 설명
@@ -45,4 +46,6 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 
 ## API설계 
 https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce90374654a0a6c2f5792f6b52
+
+## 
 
