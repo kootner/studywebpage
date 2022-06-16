@@ -9,7 +9,7 @@
 ## 제작기간 
 22.06.10(금) ~ 22.06.16(목)
 
-
+---
 ## 팀원 및 역할 분담
 ```
 강현구
@@ -24,6 +24,7 @@ Role 상세페이지 작성 기능 구현 , 코드 리팩토링 작업
 Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기능 구현, 소셜 로그인 구현
 ```
 
+---
 ## 기술스택
 
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
@@ -41,6 +42,7 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 * 메인페이지에서 api로 간략한 설명과 사진을 요청하고 이것을 보내줌
 * 상세페이지에서는 댓글 리스트를 보내주어 타 유저의 스터디 모집에 대한 반응 가능
 
+---
 ## 데이터베이스 구조
 
 ![image](https://user-images.githubusercontent.com/79959576/173970297-05580a99-8b55-4441-91b6-5fb97cb830b0.png)
@@ -48,23 +50,28 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 ## API설계 
 https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce90374654a0a6c2f5792f6b52
 
+---
 ## 프로젝트 화면
 <로그인 페이지>
 ![](https://user-images.githubusercontent.com/105117965/174049537-7b509dc0-bed4-4bdf-b2fc-480dd2092dc5.png)
 
+---
 <회원가입 페이지>
 ![](https://user-images.githubusercontent.com/105117965/174049890-834a0af3-dd5d-4147-8224-1a85fc7d2ee5.png)
 
+---
 <메인 페이지>
 ![](https://user-images.githubusercontent.com/105117965/174049987-25178225-0e11-4eda-a8c9-1efc6e609e41.png)
 
+---
 <작성 페이지>
 ![](https://user-images.githubusercontent.com/105117965/174050090-eeb9fd26-7748-413f-b199-fa1548f2e675.png)
 
+---
 <상세 페이지>
 ![](https://user-images.githubusercontent.com/105117965/174050150-8917163d-359d-44bc-979b-0bd424ada5a8.png)
 
-
+---
 ## 프로젝트 후기
 
 강현구   
@@ -77,7 +84,7 @@ https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce9037
 기능구현 뿐만 아니라 프론트와의 협업으로 인한 시간 차이, 현실적으로 구현이 가능한 기능과 추가 기능에 대한 수요를 조절하는 능력을 기르는 주간이었다. CORS 수정이 이번 주차의 핵심 사안 중 하나였는데 단순히 ARC나 postman을 통해 스프링 서버 내부에서 localhost8080을 통한 api 호출과 실질적으로 프론트에서 보내는 api호출은 상당한 차이를 보였다. 또한 api 명세서를 통해 데이터 이름과 타입 등에 프론트에서 올바르게 받을 수 있도록 일치 시키는 것 또한 중요한 것을 인지했다. 무엇보다도 프론트와 백 간의 의견 조율, 데이터 가공 등의 협업의 핵심 가치들을 알아가는 한 주였다. 
 
 
-
+---
 ## Trouble Shooting
 
 1. 로그인시 토큰이 Header에는 정상적으로 들어가나 프론트에서 response로 데이터가 안가져와지는 문제 발생   
