@@ -41,8 +41,4 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 
 ## 데이터베이스 구조
 
-
-
-![스크린샷 2022-06-16 오전 10 01 24](https://user-images.githubusercontent.com/99638050/173969734-5739a253-5d88-43a8-9a34-cacf6e79bfb9.png)
-![스크린샷 2022-06-16 오전 10 01 34](https://user-images.githubusercontent.com/99638050/173969740-b64bbffd-3121-4aee-b5a1-44a1ce6cb41c.png)
-![스크린샷 2022-06-16 오전 10 01 40](https://user-images.githubusercontent.com/99638050/173969743-4e17d0dc-e53e-4860-a615-5b79dd1465f5.png)
+https://www.notion.so/Back-End-6e8ce53cce894903af415381aa04d4d4#4010738a20704574994e3178d966ac4b
