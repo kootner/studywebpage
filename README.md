@@ -48,6 +48,10 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 ## API설계 
 https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce90374654a0a6c2f5792f6b52
 
+## 프로젝트 화면
+<>
+![](https://user-images.githubusercontent.com/105117965/174049537-7b509dc0-bed4-4bdf-b2fc-480dd2092dc5.png)
+
 ## 프로젝트 후기
 
 강현구   
