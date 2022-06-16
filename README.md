@@ -61,9 +61,9 @@ https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce9037
 ## Trouble Shooting
 
 1, 로그인시 토큰이 Header에는 정상적으로 들어가나 프론트에서 response로 데이터가 안가져와지는 문제 발생   
--> CORS에서 addExposedHeader 코드 추가하여 진행    
--> 이슈 해결 안됨 -> 추가확인결과 addExposedHeader를 추가하는건 맞았으나 값에 Authorization에 ti를 it로 입력된 오타 확인    
--> 수정 후 정상작동    
+ -> CORS에서 addExposedHeader 코드 추가하여 진행    
+ -> 이슈 해결 안됨 -> 추가확인결과 addExposedHeader를 추가하는건 맞았으나 값에 Authorization에 ti를 it로 입력된 오타 확인    
+ -> 수정 후 정상작동    
    
 2. 스터디 작성 저장이 정상적으로 안되고 에러발생    
 -> 토큰 문제인지 확인결과 문제없음    
