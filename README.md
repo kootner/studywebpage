@@ -40,8 +40,7 @@ Role 로그인 및 회원가입 기능 구현, 댓글 작성, 수정, 삭제 기
 * 상세페이지에서는 댓글 리스트를 보내주어 타 유저의 스터디 모집에 대한 반응 가능
 
 ## 데이터베이스 구조
-
-![image](https://user-images.githubusercontent.com/79959576/173970297-05580a99-8b55-4441-91b6-5fb97cb830b0.png)
+![스크린샷 2022-06-16 오후 1 22 34](https://user-images.githubusercontent.com/99638050/173990796-daef6bf9-6c9c-4737-8f66-d76f5a506471.png)
 
 ## API설계 
 https://sky-song-209.notion.site/df5aae052be245d4a2c02c2ee55cc96d?v=057c39ce90374654a0a6c2f5792f6b52
