@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class ResponseDto {
-    private boolean ok;
-    private String message;
+    private final boolean ok;
+    private final String message;
 
     public ResponseDto(boolean ok, String message) {
         this.ok =  ok;

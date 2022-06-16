@@ -3,7 +3,6 @@ package com.sparta.studywebpage.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.studywebpage.dto.KakaoUserInfoDto;
 import com.sparta.studywebpage.dto.KakaoUserRequestDto;
 import com.sparta.studywebpage.dto.KakaoUserResponseDto;
 import com.sparta.studywebpage.exception.CustomException;
